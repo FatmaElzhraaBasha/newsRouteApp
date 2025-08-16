@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_route_app/l10n/app_localizations.dart';
+import 'package:news_route_app/ui/category_details/category_details.dart';
 import 'package:news_route_app/utils/app_assets.dart';
 import 'package:news_route_app/utils/app_styles.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
+      body: CategoryDetails(),
       drawer: Drawer(
         backgroundColor: AppColors.black,
         child: ListView(
@@ -342,3 +344,6 @@ ListTile(
                   ),
                 ),
  */
+
+
+//b66f9f162dee4672857c79ab75aa4874

@@ -20,5 +20,7 @@
   "language": "اللغة",
   "english": "الإنجليزية",
   "arabic": "العربية",
-  "spanish": "الإسبانية"
+  "spanish": "الإسبانية",
+  "something_went_wrong": "حدث خطأ ما",
+  "please_try_again": "الرجاء المحاولة مرة أخرى"
 }

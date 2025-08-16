@@ -231,6 +231,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Spanish'**
   String get spanish;
+
+  /// No description provided for @something_went_wrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Something Went Wrong'**
+  String get something_went_wrong;
+
+  /// No description provided for @please_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Please Try Again!'**
+  String get please_try_again;
 }
 
 class _AppLocalizationsDelegate

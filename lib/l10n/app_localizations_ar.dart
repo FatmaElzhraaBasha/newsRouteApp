@@ -73,4 +73,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get spanish => 'الإسبانية';
+
+  @override
+  String get something_went_wrong => 'حدث خطأ ما';
+
+  @override
+  String get please_try_again => 'الرجاء المحاولة مرة أخرى';
 }

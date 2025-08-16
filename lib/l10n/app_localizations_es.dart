@@ -73,4 +73,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get spanish => 'Español';
+
+  @override
+  String get something_went_wrong => 'Algo salió mal';
+
+  @override
+  String get please_try_again => '¡Por favor, inténtalo de nuevo!';
 }
