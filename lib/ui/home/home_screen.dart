@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_route_app/l10n/app_localizations.dart';
 import 'package:news_route_app/ui/category_details/category_details.dart';
+import 'package:news_route_app/ui/home/category_fragment/category_fragment.dart';
 import 'package:news_route_app/utils/app_assets.dart';
 import 'package:news_route_app/utils/app_styles.dart';
 import 'package:provider/provider.dart';
+
+import '../../model/category.dart';
 import '../../providers/app_Language_Provider.dart';
 import '../../providers/app_theme_provider.dart';
 import '../../utils/app_colors.dart';
@@ -27,11 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context)!.home,
+          selectedCategory == null
+              ? AppLocalizations.of(context)!.home
+              : selectedCategory!.title,
           style: Theme.of(context).textTheme.headlineLarge,
         ),
       ),
-      body: CategoryDetails(),
+      body: selectedCategory == null
+          ? CategoryFragment(onCategoryItemClick: onCategoryItemClick)
+          : CategoryDetails(category: selectedCategory!),
+
       drawer: Drawer(
         backgroundColor: AppColors.black,
         child: ListView(
@@ -51,7 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ListTile(
                   onTap: () {
+                    selectedCategory = null;
                     Navigator.pop(context);
+                    setState(() {});
                   },
                   title: Row(
                     children: [
@@ -132,12 +142,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: themeProvider.isDarkMode()
                                   ? getUnSelectedItem(
-                                unSelectedText: AppLocalizations.of(
+                                      unSelectedText: AppLocalizations.of(
                                         context,
                                       )!.light,
                                     )
                                   : getSelectedItem(
-                                selectedText: AppLocalizations.of(
+                                      selectedText: AppLocalizations.of(
                                         context,
                                       )!.light,
                                     ),
@@ -149,12 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: themeProvider.isDarkMode()
                                   ? getSelectedItem(
-                                selectedText: AppLocalizations.of(
+                                      selectedText: AppLocalizations.of(
                                         context,
                                       )!.dark,
                                     )
                                   : getUnSelectedItem(
-                                unSelectedText: AppLocalizations.of(
+                                      unSelectedText: AppLocalizations.of(
                                         context,
                                       )!.dark,
                                     ),
@@ -229,15 +239,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: languageProvider.appLanguage == 'en'
                                   ? getSelectedItem(
-                                selectedText: AppLocalizations.of(
-                                  context,
-                                )!.english,
-                              )
+                                      selectedText: AppLocalizations.of(
+                                        context,
+                                      )!.english,
+                                    )
                                   : getUnSelectedItem(
-                                unSelectedText: AppLocalizations.of(
-                                  context,
-                                )!.english,
-                              ),
+                                      unSelectedText: AppLocalizations.of(
+                                        context,
+                                      )!.english,
+                                    ),
                             ),
                             SizedBox(height: height * 0.01),
                             InkWell(
@@ -246,15 +256,15 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               child: languageProvider.appLanguage == 'ar'
                                   ? getSelectedItem(
-                                selectedText: AppLocalizations.of(
-                                  context,
-                                )!.arabic,
-                              )
+                                      selectedText: AppLocalizations.of(
+                                        context,
+                                      )!.arabic,
+                                    )
                                   : getUnSelectedItem(
-                                unSelectedText: AppLocalizations.of(
-                                  context,
-                                )!.arabic,
-                              ),
+                                      unSelectedText: AppLocalizations.of(
+                                        context,
+                                      )!.arabic,
+                                    ),
                             ),
                           ],
                         ),
@@ -289,6 +299,14 @@ class _HomeScreenState extends State<HomeScreen> {
         SizedBox(width: 28),
       ],
     );
+  }
+
+  Category? selectedCategory;
+
+  void onCategoryItemClick(Category newSelectedCategory) {
+    //todo: newSelectedCategory => user
+    selectedCategory = newSelectedCategory;
+    setState(() {});
   }
 }
 
@@ -344,6 +362,5 @@ ListTile(
                   ),
                 ),
  */
-
 
 //b66f9f162dee4672857c79ab75aa4874

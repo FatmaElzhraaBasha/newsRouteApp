@@ -4,6 +4,7 @@ import 'package:news_route_app/utils/app_styles.dart';
 class AppThemes{
   static final ThemeData lightTheme = ThemeData(
     primaryColor: AppColors.white,
+      canvasColor: AppColors.black,
     indicatorColor: AppColors.black,
     scaffoldBackgroundColor: AppColors.white,
       tabBarTheme: TabBarThemeData(
@@ -21,12 +22,15 @@ class AppThemes{
       labelSmall: AppStyles.medium12Grey,
       labelMedium: AppStyles.medium14Black,
       headlineMedium: AppStyles.medium24Black,
-      headlineLarge: AppStyles.medium20Black
+        headlineLarge: AppStyles.medium20Black,
+        headlineSmall: AppStyles.bold24White
+
     )
   );
 
   static final ThemeData darkTheme = ThemeData(
       primaryColor: AppColors.black,
+      canvasColor: AppColors.white,
       indicatorColor: AppColors.white,
       scaffoldBackgroundColor: AppColors.black,
       tabBarTheme: TabBarThemeData(
@@ -44,7 +48,8 @@ class AppThemes{
           labelSmall: AppStyles.medium12Grey,
           labelMedium: AppStyles.medium14White,
           headlineMedium: AppStyles.medium24White,
-          headlineLarge: AppStyles.medium20White
+          headlineLarge: AppStyles.medium20White,
+          headlineSmall: AppStyles.bold24Black
       )
   );
 }

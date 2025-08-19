@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:news_route_app/apis/apis_manager.dart';
 import 'package:news_route_app/model/NewsResponce.dart';
 import 'package:news_route_app/ui/category_details/news/news_item.dart';
+import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../model/SourceResponse.dart';
+import '../../../model/category.dart';
+import '../../../providers/app_Language_Provider.dart';
 import '../../../utils/app_colors.dart';
 
 class NewsWidget extends StatefulWidget {
   Source source;
-   NewsWidget({super.key , required this.source});
+  Category category;
+
+  NewsWidget({super.key, required this.source, required this.category});
 
   @override
   State<NewsWidget> createState() => _NewsWidgetState();
@@ -19,8 +24,11 @@ class _NewsWidgetState extends State<NewsWidget> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
+    var languageProvider = Provider.of<AppLanguageProvider>(context);
+
     return FutureBuilder<NewsResponse?>(
-        future: ApisManager.getNewsBySourceId(widget.source.id??''),
+      future: ApisManager.getNewsBySourceId(widget.source.id ?? '',
+          languageProvider.appLanguage),
         builder: (context, snapshot) {
           //todo: loading
           if(snapshot.connectionState == ConnectionState.waiting){
@@ -44,7 +52,8 @@ class _NewsWidgetState extends State<NewsWidget> {
                       backgroundColor: AppColors.grey
                   ),
                   onPressed: (){
-                    ApisManager.getNewsBySourceId(widget.source.id??'');
+                    ApisManager.getNewsBySourceId(widget.source.id ?? '',
+                        languageProvider.appLanguage);
                     setState(() {
 
                     });
@@ -69,7 +78,8 @@ class _NewsWidgetState extends State<NewsWidget> {
                       backgroundColor: AppColors.grey
                   ),
                   onPressed: (){
-                    ApisManager.getSources();
+                    ApisManager.getSources(widget.category.id,
+                        languageProvider.appLanguage);
                     setState(() {
 
                     });

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:news_route_app/apis/apis_manager.dart';
 import 'package:news_route_app/l10n/app_localizations.dart';
+import 'package:news_route_app/model/category.dart';
 import 'package:news_route_app/ui/category_details/source/source_tab_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/app_Language_Provider.dart';
 import '../../utils/app_colors.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  Category category;
+
+  CategoryDetails({super.key, required this.category});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -15,8 +20,11 @@ class CategoryDetails extends StatefulWidget {
 class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
+    var languageProvider = Provider.of<AppLanguageProvider>(context);
+
     return FutureBuilder(
-        future: ApisManager.getSources(),
+      future: ApisManager.getSources(widget.category.id,
+          languageProvider.appLanguage),
         builder: (context, snapshot) {
           //todo: loading
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -40,7 +48,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                       backgroundColor: AppColors.grey
                   ),
                   onPressed: (){
-                    ApisManager.getSources();
+                    ApisManager.getSources(widget.category.id,
+                        languageProvider.appLanguage);
                     setState(() {
 
                     });
@@ -64,7 +73,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                     backgroundColor: AppColors.grey
                   ),
                   onPressed: (){
-                  ApisManager.getSources();
+                    ApisManager.getSources(widget.category.id,
+                        languageProvider.appLanguage);
                   setState(() {
 
                   });
@@ -76,7 +86,8 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           }
           //todo: serverResponse => Success
           var sourceList = snapshot.data?.sources ?? [];
-          return SourceTabWidget(sourceList: sourceList);
+          return SourceTabWidget(
+            sourceList: sourceList, category: widget.category,);
 
 
 
