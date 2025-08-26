@@ -10,13 +10,11 @@ class ApisManager{
   https://newsapi.org/v2/top-headlines/sources?
   apiKey=b66f9f162dee4672857c79ab75aa4874
    */
-  static Future<SourceResponse?> getSources(String categoryId,
-      String language) async {
+  static Future<SourceResponse?> getSources(String categoryId) async {
     Uri url = Uri.https(ApisConstants.baseUrl,
         EndPoints.sourceApi,{
           'apiKey': ApisConstants.apiKey,
           'category': categoryId,
-          'language': language
         }
     );
     try{
@@ -36,14 +34,12 @@ class ApisManager{
   https://newsapi.org/v2/everything?q=bitcoin&apiKey=b66f9f162dee4672857c79ab75aa4874
    */
 
-  static Future<NewsResponse?> getNewsBySourceId(String sourceId,
-      String language) async {
+  static Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
     Uri url = Uri.https(ApisConstants.baseUrl,
       EndPoints.newsApi,
       {
         'apiKey' : ApisConstants.apiKey,
         'sources': sourceId,
-        'language': language
       }
     );
     try {
