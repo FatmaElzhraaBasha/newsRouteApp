@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_route_app/l10n/app_localizations.dart';
-import 'package:news_route_app/ui/category_details/category_details.dart';
+import 'package:news_route_app/ui/category_details/sources_details.dart';
 import 'package:news_route_app/ui/home/category_fragment/category_fragment.dart';
 import 'package:news_route_app/utils/app_assets.dart';
 import 'package:news_route_app/utils/app_styles.dart';
