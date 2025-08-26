@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_route_app/model/SourceResponse.dart';
 import 'package:news_route_app/ui/category_details/news/news_widget.dart';
 import 'package:news_route_app/ui/category_details/source/source_name.dart';
 
 import '../../../model/category.dart';
 import '../../../utils/app_colors.dart';
+import '../news/cubit/news_view_model.dart';
 
 class SourceTabWidget extends StatefulWidget {
   List<Source> sourceList;
@@ -45,9 +47,18 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
     },).toList()),
             SizedBox(height: height*0.02,),
             Expanded(
+              child: BlocProvider(
+                key: ValueKey(widget.sourceList[selectedIndex].id),
+                create: (_) =>
+                NewsViewModel()
+                  ..getNewsBySourceId(
+                      widget.sourceList[selectedIndex].id ?? ''),
                 child: NewsWidget(
                   source: widget.sourceList[selectedIndex],
-                  category: widget.category,))
+                  category: widget.category,
+                ),
+              ),
+            ),
           ],
         ));
   }
