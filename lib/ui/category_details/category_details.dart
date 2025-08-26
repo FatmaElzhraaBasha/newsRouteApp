@@ -53,18 +53,14 @@ class _CategoryDetailsState extends State<CategoryDetails> {
                 ),
               ],
             );
-          }
-          if (viewModel.sourcesList == null) {
+          } else if (viewModel.sourcesList == null) {
             //todo: loading
             return const Center(
               child: CircularProgressIndicator(color: AppColors.grey),
             );
           } else {
             //todo: success
-            return SourceTabWidget(
-              sourceList: viewModel.sourcesList!,
-              category: widget.category,
-            );
+            return SourceTabWidget(sourceList: viewModel.sourcesList!);
           }
         },
       ),

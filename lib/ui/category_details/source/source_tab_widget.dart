@@ -3,15 +3,12 @@ import 'package:news_route_app/model/SourceResponse.dart';
 import 'package:news_route_app/ui/category_details/news/news_widget.dart';
 import 'package:news_route_app/ui/category_details/source/source_name.dart';
 
-import '../../../model/category.dart';
 import '../../../utils/app_colors.dart';
 
 class SourceTabWidget extends StatefulWidget {
   List<Source> sourceList;
-  Category category;
 
-  SourceTabWidget(
-      {super.key, required this.sourceList, required this.category});
+  SourceTabWidget({super.key, required this.sourceList});
 
   @override
   State<SourceTabWidget> createState() => _SourceTabWidgetState();
@@ -46,8 +43,7 @@ class _SourceTabWidgetState extends State<SourceTabWidget> {
             SizedBox(height: height*0.02,),
             Expanded(
                 child: NewsWidget(
-                  source: widget.sourceList[selectedIndex],
-                  category: widget.category,))
+                    source: widget.sourceList[selectedIndex]))
           ],
         ));
   }

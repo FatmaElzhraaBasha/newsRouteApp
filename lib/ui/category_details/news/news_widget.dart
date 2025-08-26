@@ -5,14 +5,12 @@ import 'package:provider/provider.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../model/SourceResponse.dart';
-import '../../../model/category.dart';
 import '../../../utils/app_colors.dart';
 
 class NewsWidget extends StatefulWidget {
   Source source;
-  Category category;
 
-  NewsWidget({super.key, required this.source, required this.category});
+  NewsWidget({super.key, required this.source});
 
   @override
   State<NewsWidget> createState() => _NewsWidgetState();
@@ -34,7 +32,7 @@ class _NewsWidgetState extends State<NewsWidget> {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
       child: Consumer<NewsViewModel>(
-        builder: (context, value, child) {
+        builder: (context, viewModel, child) {
           if (viewModel.errorMessage != null) {
             //todo: error
             return Column(
@@ -62,8 +60,7 @@ class _NewsWidgetState extends State<NewsWidget> {
                 ),
               ],
             );
-          }
-          if (viewModel.newsList == null) {
+          } else if (viewModel.newsList == null) {
             //todo: loading
             return const Center(
               child: CircularProgressIndicator(color: AppColors.grey),
