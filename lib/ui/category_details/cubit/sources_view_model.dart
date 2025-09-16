@@ -6,7 +6,6 @@ class SourcesViewModel extends Cubit<SourcesState> {
   SourcesViewModel() : super(SourceLoadingState());
 
   //todo: hold data - handle logic
-  //List<Source>? sourcesList;
   void getSources(String categoryId) async {
     try {
       //todo: loading
